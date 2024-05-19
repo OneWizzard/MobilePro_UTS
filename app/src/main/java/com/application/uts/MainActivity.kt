@@ -1,10 +1,10 @@
 package com.application.uts
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -28,19 +28,39 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the login button click listener
         Login.setOnClickListener {
+            // Hardcoded values
+            val emailText = "admin@admin.com"
+            val nameText = "Muhammad Rachmadhani Kurniawan"
+            val NIMText = "2207411031"
+            val KelasText = "TI-4B"
+            val passwordText = "admin"
+
+            // Store values in SharedPreferences
+            val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("email", emailText)
+            editor.putString("name", nameText)
+            editor.putString("nim", NIMText)
+            editor.putString("kelas", KelasText)
+            editor.putString("password", passwordText)
+            editor.apply()
+
             // Get the email and password from the text fields
-            val emailText = email.text.toString()
-            val passwordText = password.text.toString()
+            val emailtxt = email.text.toString()
+            val passwordtxt = password.text.toString()
 
             // Check if the email and password are correct
-            if (emailText == "admin@admin.com" && passwordText == "admin") {
+            if (emailtxt == emailText && passwordtxt == passwordText) {
                 // Start the next activity
-                val intent = Intent(this, FragmentHome::class.java)
+                val intent = Intent(this, Home::class.java)
                 startActivity(intent)
             } else {
                 // Show an error message
                 Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun enableEdgeToEdge() {
+        // Implement this method if necessary to enable edge-to-edge display
     }
 }

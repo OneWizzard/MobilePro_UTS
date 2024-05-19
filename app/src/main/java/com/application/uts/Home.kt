@@ -7,16 +7,17 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.application.uts.fragment.FragmentOne
-import com.application.uts.fragment.FragmentTwo
+import com.application.uts.fragment.FragmentHome
+import com.application.uts.fragment.FragmentProfile
+import com.application.uts.fragment.FragmentNews
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FragmentHome : AppCompatActivity() {
+class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.fragment_home)
+        setContentView(R.layout.home)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -25,7 +26,7 @@ class FragmentHome : AppCompatActivity() {
         // Set the initial fragment
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.containerLayout, FragmentOne())
+                .replace(R.id.containerLayout, FragmentHome())
                 .commit()
         }
 
@@ -33,9 +34,9 @@ class FragmentHome : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
             when (item.itemId) {
-                R.id.nav_home -> selectedFragment = FragmentOne()
-                R.id.nav_berita -> selectedFragment = FragmentTwo()
-//                R.id.nav_profile -> selectedFragment = FragmentThree()
+                R.id.nav_home -> selectedFragment = FragmentHome()
+                R.id.nav_berita -> selectedFragment = FragmentNews()
+                R.id.nav_profile -> selectedFragment = FragmentProfile()
             }
             if (selectedFragment != null) {
                 supportFragmentManager.beginTransaction()
@@ -52,29 +53,29 @@ class FragmentHome : AppCompatActivity() {
         return true
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle item selection
-//        return when (item.itemId) {
-//            R.id.menu_add_data -> {
-//                // Handle Add Data option
-//                val intent = Intent(this, TambahData::class.java)
-//                startActivity(intent)
-//                true
-//            }
-//            R.id.menu_alumni_data -> {
-//                // Handle Alumni Data option
-//                val intent = Intent(this, DataAlumni::class.java)
-//                startActivity(intent)
-//                true
-//            }
-//            R.id.menu_logout -> {
-//                // Handle Logout option
-//                finish()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.menu_add_data -> {
+                // Handle Add Data option
+                val intent = Intent(this, AddData::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.menu_alumni_data -> {
+                // Handle Alumni Data option
+                val intent = Intent(this, DataAlumni::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.menu_logout -> {
+                // Handle Logout option
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun enableEdgeToEdge() {
         // Implement this method if necessary to enable edge-to-edge display

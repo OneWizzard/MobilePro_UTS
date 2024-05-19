@@ -13,19 +13,35 @@
         android:theme="@style/Theme.Uts"
         tools:targetApi="31" >
         <activity
-            android:name=".FragmentHome"
+            android:name=".Home"
             android:exported="false" >
         </activity>
         <activity
-            android:name=".fragment.FragmentOne"
+            android:name=".fragment.FragmentHome"
             android:exported="false" >
         </activity>
         <activity
-            android:name=".fragment.FragmentTwo"
+            android:name=".fragment.FragmentNews"
             android:exported="false" >
         </activity>
         <activity
             android:name=".DetailBerita"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".fragment.FragmentProfile"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".DataAlumni"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".DetailAlumni"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".AddData"
             android:exported="false" >
         </activity>
 
